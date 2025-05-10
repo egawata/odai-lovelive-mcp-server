@@ -24,6 +24,9 @@ class Database {
         series: Array<{ id: string, name: string }>,
         characters: Array<Character>,
         places: Array<string>,
+        times: Array<string>,
+        actions: Array<string>,
+        items: Array<string>,
     };
 
     constructor(dataPath: string) {
@@ -33,7 +36,14 @@ class Database {
         } catch (error) {
             console.error('Failed to load data.json:', error);
             // 初期化エラー時は空のデータ構造を用意
-            this.data = { series: [], characters: [], places: [] };
+            this.data = {
+                series: [],
+                characters: [],
+                places: [],
+                times: [],
+                actions: [],
+                items: [],
+            };
         }
     }
 
@@ -61,15 +71,54 @@ class Database {
     getPlaces() {
         return this.data.places;
     }
+
+    getTimes() {
+        return this.data.times;
+    }
+
+    getActions() {
+        return this.data.actions;
+    }
+
+    getItems() {
+        return this.data.items;
+    }
 }
 
 function getRandomPlace(): string {
     const places = database?.getPlaces();
     if (!places) {
-        return "failed to get places.";
+        return "";
     }
     const randomIndex = Math.floor(Math.random() * places.length);
     return places[randomIndex];
+}
+
+function getTime(): string {
+    const times = database?.getTimes();
+    if (!times) {
+        return "";
+    }
+    const randomIndex = Math.floor(Math.random() * times.length);
+    return times[randomIndex];
+}
+
+function getAction(): string {
+    const actions = database?.getActions();
+    if (!actions) {
+        return "";
+    }
+    const randomIndex = Math.floor(Math.random() * actions.length);
+    return actions[randomIndex];
+}
+
+function getItem(): string {
+    const items = database?.getItems();
+    if (!items) {
+        return "";
+    }
+    const randomIndex = Math.floor(Math.random() * items.length);
+    return items[randomIndex];
 }
 
 async function generateOdai(num: number, seriesIDs?: string[]) {
@@ -108,6 +157,9 @@ async function generateOdai(num: number, seriesIDs?: string[]) {
             }
         }),
         "place": getRandomPlace(),
+        "time": getTime(),
+        "action": getAction(),
+        "item": getItem(),
     }
 
     return {
