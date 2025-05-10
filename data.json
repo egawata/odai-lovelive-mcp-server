@@ -1,0 +1,448 @@
+{
+  "series": [
+    {
+      "name": "μ's",
+      "link": "https://www.lovelive-anime.jp/otonokizaka/",
+      "id": 1
+    },
+    {
+      "name": "Aqours",
+      "link": "https://www.lovelive-anime.jp/uranohoshi/",
+      "id": 2
+    },
+    {
+      "name": "虹ヶ咲",
+      "link": "https://www.lovelive-anime.jp/nijigasaki/",
+      "id": 3
+    },
+    {
+      "name": "Liella!",
+      "link": "https://www.lovelive-anime.jp/yuigaoka/",
+      "id": 4
+    },
+    {
+      "name": "蓮ノ空",
+      "link": "https://www.lovelive-anime.jp/hasunosora/",
+      "id": 5
+    }
+  ],
+  "characters": [
+    {
+      "name": "日野下花帆",
+      "link": "https://www.lovelive-anime.jp/hasunosora/member/01/",
+      "series": 5
+    },
+    {
+      "name": "村野さやか",
+      "link": "https://www.lovelive-anime.jp/hasunosora/member/02/",
+      "series": 5
+    },
+    {
+      "name": "乙宗梢",
+      "link": "https://www.lovelive-anime.jp/hasunosora/member/03/",
+      "series": 5
+    },
+    {
+      "name": "夕霧綴理",
+      "link": "https://www.lovelive-anime.jp/hasunosora/member/04/",
+      "series": 5
+    },
+    {
+      "name": "大沢瑠璃乃",
+      "link": "https://www.lovelive-anime.jp/hasunosora/member/05/",
+      "series": 5
+    },
+    {
+      "name": "藤島慈",
+      "link": "https://www.lovelive-anime.jp/hasunosora/member/06/",
+      "series": 5
+    },
+    {
+      "name": "百生吟子",
+      "link": "https://www.lovelive-anime.jp/hasunosora/member/07/",
+      "series": 5
+    },
+    {
+      "name": "徒町小鈴",
+      "link": "https://www.lovelive-anime.jp/hasunosora/member/08/",
+      "series": 5
+    },
+    {
+      "name": "安養寺姫芽",
+      "link": "https://www.lovelive-anime.jp/hasunosora/member/09/",
+      "series": 5
+    },
+    {
+      "name": "セラス 柳田 リリエンフェルト",
+      "link": "https://www.lovelive-anime.jp/hasunosora/member/10/",
+      "series": 5
+    },
+    {
+      "name": "桂城泉",
+      "link": "https://www.lovelive-anime.jp/hasunosora/member/11/",
+      "series": 5
+    },
+    {
+      "name": "高坂穂乃果",
+      "link": "https://www.lovelive-anime.jp/otonokizaka/member/member01.html",
+      "series": 1
+    },
+    {
+      "name": "絢瀬絵里",
+      "link": "https://www.lovelive-anime.jp/otonokizaka/member/member02.html",
+      "series": 1
+    },
+    {
+      "name": "南ことり",
+      "link": "https://www.lovelive-anime.jp/otonokizaka/member/member03.html",
+      "series": 1
+    },
+    {
+      "name": "園田海未",
+      "link": "https://www.lovelive-anime.jp/otonokizaka/member/member04.html",
+      "series": 1
+    },
+    {
+      "name": "星空凛",
+      "link": "https://www.lovelive-anime.jp/otonokizaka/member/member05.html",
+      "series": 1
+    },
+    {
+      "name": "西木野真姫",
+      "link": "https://www.lovelive-anime.jp/otonokizaka/member/member06.html",
+      "series": 1
+    },
+    {
+      "name": "東條希",
+      "link": "https://www.lovelive-anime.jp/otonokizaka/member/member07.html",
+      "series": 1
+    },
+    {
+      "name": "小泉花陽",
+      "link": "https://www.lovelive-anime.jp/otonokizaka/member/member08.html",
+      "series": 1
+    },
+    {
+      "name": "矢澤にこ",
+      "link": "https://www.lovelive-anime.jp/otonokizaka/member/member09.html",
+      "series": 1
+    },
+    {
+      "name": "高海千歌",
+      "link": "https://lovelive-sif2.bushimo.jp/member/aqours/chika/",
+      "series": 2
+    },
+    {
+      "name": "桜内梨子",
+      "link": "https://lovelive-sif2.bushimo.jp/member/aqours/riko/",
+      "series": 2
+    },
+    {
+      "name": "松浦果南",
+      "link": "https://lovelive-sif2.bushimo.jp/member/aqours/kanan/",
+      "series": 2
+    },
+    {
+      "name": "黒澤ダイヤ",
+      "link": "https://lovelive-sif2.bushimo.jp/member/aqours/dia/",
+      "series": 2
+    },
+    {
+      "name": "渡辺曜",
+      "link": "https://lovelive-sif2.bushimo.jp/member/aqours/you/",
+      "series": 2
+    },
+    {
+      "name": "津島善子",
+      "link": "https://lovelive-sif2.bushimo.jp/member/aqours/yoshiko/",
+      "series": 2
+    },
+    {
+      "name": "国木田花丸",
+      "link": "https://lovelive-sif2.bushimo.jp/member/aqours/hanamaru/",
+      "series": 2
+    },
+    {
+      "name": "小原鞠莉",
+      "link": "https://lovelive-sif2.bushimo.jp/member/aqours/mari/",
+      "series": 2
+    },
+    {
+      "name": "黒澤ルビィ",
+      "link": "https://lovelive-sif2.bushimo.jp/member/aqours/ruby/",
+      "series": 2
+    },
+    {
+      "name": "澁谷かのん",
+      "link": "https://lovelive-sif2.bushimo.jp/member/liella/kanon/",
+      "series": 4
+    },
+    {
+      "name": "唐可可",
+      "link": "https://lovelive-sif2.bushimo.jp/member/liella/keke/",
+      "series": 4
+    },
+    {
+      "name": "嵐千砂都",
+      "link": "https://lovelive-sif2.bushimo.jp/member/liella/chisato/",
+      "series": 4
+    },
+    {
+      "name": "平安名すみれ",
+      "link": "https://lovelive-sif2.bushimo.jp/member/liella/sumire/",
+      "series": 4
+    },
+    {
+      "name": "葉月恋",
+      "link": "https://lovelive-sif2.bushimo.jp/member/liella/ren/",
+      "series": 4
+    },
+    {
+      "name": "桜小路きな子",
+      "link": "https://lovelive-sif2.bushimo.jp/member/liella/kinako/",
+      "series": 4
+    },
+    {
+      "name": "米女メイ",
+      "link": "https://lovelive-sif2.bushimo.jp/member/liella/mei/",
+      "series": 4
+    },
+    {
+      "name": "若菜四季",
+      "link": "https://lovelive-sif2.bushimo.jp/member/liella/shiki/",
+      "series": 4
+    },
+    {
+      "name": "鬼塚夏美",
+      "link": "https://lovelive-sif2.bushimo.jp/member/liella/natsumi/",
+      "series": 4
+    },
+    {
+      "name": "ウィーン・マルガレーテ",
+      "link": "https://www.lovelive-anime.jp/yuigaoka/member/",
+      "series": 4
+    },
+    {
+      "name": "鬼塚冬毬",
+      "link": "https://www.lovelive-anime.jp/yuigaoka/member/",
+      "series": 4
+    },
+    {
+      "name": "上原歩夢",
+      "link": "https://lovelive-sif2.bushimo.jp/member/nijigasaki/ayumu/",
+      "series": 3
+    },
+    {
+      "name": "中須かすみ",
+      "link": "https://lovelive-sif2.bushimo.jp/member/nijigasaki/kasumi/",
+      "series": 3
+    },
+    {
+      "name": "桜坂しずく",
+      "link": "https://lovelive-sif2.bushimo.jp/member/nijigasaki/shizuku/",
+      "series": 3
+    },
+    {
+      "name": "朝香果林",
+      "link": "https://lovelive-sif2.bushimo.jp/member/nijigasaki/karin/",
+      "series": 3
+    },
+    {
+      "name": "宮下愛",
+      "link": "https://lovelive-sif2.bushimo.jp/member/nijigasaki/ai/",
+      "series": 3
+    },
+    {
+      "name": "近江彼方",
+      "link": "https://lovelive-sif2.bushimo.jp/member/nijigasaki/kanata/",
+      "series": 3
+    },
+    {
+      "name": "優木せつ菜",
+      "link": "https://lovelive-sif2.bushimo.jp/member/nijigasaki/setsuna/",
+      "series": 3
+    },
+    {
+      "name": "エマ・ヴェルデ",
+      "link": "https://lovelive-sif2.bushimo.jp/member/nijigasaki/verde/",
+      "series": 3
+    },
+    {
+      "name": "天王寺璃奈",
+      "link": "https://lovelive-sif2.bushimo.jp/member/nijigasaki/rina/",
+      "series": 3
+    },
+    {
+      "name": "三船栞子",
+      "link": "https://lovelive-sif2.bushimo.jp/member/nijigasaki/shioriko/",
+      "series": 3
+    },
+    {
+      "name": "ミア・テイラー",
+      "link": "https://lovelive-sif2.bushimo.jp/member/nijigasaki/mia/",
+      "series": 3
+    },
+    {
+      "name": "鐘嵐珠",
+      "link": "https://lovelive-sif2.bushimo.jp/member/nijigasaki/lanzhu/",
+      "series": 3
+    },
+    {
+      "name": "高咲侑",
+      "link": "https://lovelive-sif2.bushimo.jp/member/nijigasaki/yu/",
+      "series": 3
+    }
+  ],
+  "places": [
+    "校門前",
+    "教室",
+    "砂浜",
+    "自分の部屋",
+    "体育館",
+    "校庭",
+    "スケートリンク",
+    "商店街",
+    "カフェ",
+    "お風呂",
+    "メイドカフェ",
+    "秋葉原",
+    "お台場",
+    "原宿竹下通り",
+    "金沢駅鼓門",
+    "沼津駅",
+    "草原",
+    "河原",
+    "キャンプ場",
+    "テーマパーク",
+    "ショッピングモール",
+    "遊園地",
+    "神社",
+    "教会",
+    "富士山頂",
+    "レトロな駄菓子屋",
+    "浅草寺",
+    "城",
+    "駅のホーム",
+    "海",
+    "船上",
+    "森林",
+    "ビル街",
+    "古風な町並",
+    "お風呂",
+    "音楽室",
+    "美術室",
+    "避暑地",
+    "スキー場",
+    "温泉",
+    "お祭り",
+    "庭園",
+    "学園祭",
+    "校舎屋上",
+    "ゲームセンター",
+    "お化け屋敷",
+    "たこやきミュージアム",
+    "ゲーマーズ",
+    "水族館",
+    "動物園",
+    "美術館",
+    "見晴台",
+    "牧場",
+    "公園",
+    "カラオケ",
+    "空の上",
+    "海中",
+    "南国の島",
+    "古都",
+    "キッチン",
+    "東京ビッグサイト",
+    "ウユニ湖"
+  ],
+  "times": ["夜", "朝", "昼", "夕方"],
+  "actions": [
+    "ダンスをしている",
+    "食事をしている",
+    "会話している",
+    "歌っている",
+    "走っている",
+    "歩いている",
+    "眠っている",
+    "ボール遊びをしている",
+    "楽器を弾いている",
+    "勉強",
+    "魔法を使っている",
+    "ライブをしている",
+    "ショッピングをしている",
+    "動画配信をしている",
+    "ポッキーゲーム",
+    "食べ歩き",
+    "料理をしている",
+    "泳いでいる",
+    "トレーニングをしている",
+    "観光",
+    "お菓子作り",
+    "空を飛んでいる",
+    "お花見",
+    "遅刻しそうになっている",
+    "探偵をしている",
+    "掃除をしている",
+    "生徒会長に立候補する",
+    "スポーツ観戦",
+    "ダジャレを言う",
+    "ペットの散歩をしている",
+    "スケートをしている",
+    "通学中",
+    "お祈りをしている",
+    "アルバイトで働いている",
+    "読書"
+  ],
+  "items": [
+    "通学かばん",
+    "花",
+    "カップ",
+    "スマートフォン",
+    "カメラ",
+    "鏡",
+    "アイスクリーム",
+    "ぬいぐるみ",
+    "バッグ",
+    "猫耳",
+    "メイド服",
+    "100tハンマー",
+    "ピアノ",
+    "スケッチブック",
+    "画材",
+    "パソコン",
+    "黒板",
+    "リボン",
+    "ほうき",
+    "魔法の杖",
+    "自転車",
+    "帽子",
+    "ラケット",
+    "マイク",
+    "髪飾り",
+    "クッション",
+    "チョコレート",
+    "めがね",
+    "キャンドル",
+    "花火",
+    "しっぽ",
+    "天使の羽根",
+    "悪魔",
+    "犬",
+    "猫",
+    "うさぎ",
+    "チャイナ服",
+    "お絵描きオムライス",
+    "首輪",
+    "ニーソ",
+    "クレープ",
+    "ヘッドホン",
+    "調理器具",
+    "エプロン",
+    "料理",
+    "手作り弁当",
+    "リュック",
+    "たこ焼き"
+  ]
+}
