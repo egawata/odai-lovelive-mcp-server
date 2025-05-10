@@ -14,6 +14,42 @@ Claude Desktop 等の MCP Client を使って、お題を作成することが�
 - Liella!
 - 蓮ノ空
 
+## サンプル
+
+例：Claude Desktop から以下のメッセージを送信
+
+~~~
+Liella と 蓮ノ空のメンバー3人でお題を作ってください
+~~~
+
+MCP Server への Request
+
+~~~json
+{
+  "num": 3,
+  "seriesIDs": ["4","5"]
+}
+~~~
+
+MCP Server からの Response
+
+~~~json
+{"characters":[{
+    "name":"澁谷かのん",
+    "link":"https://lovelive-sif2.bushimo.jp/member/liella/kanon/"
+},{
+    "name":"百生吟子",
+    "link":"https://www.lovelive-anime.jp/hasunosora/member/07/"
+},{
+    "name":"鬼塚夏美",
+    "link":"https://lovelive-sif2.bushimo.jp/member/liella/natsumi/"
+}],
+"place":"牧場",
+"time":"夜",
+"action":"観光",
+"item":"リボン"}
+~~~
+
 ## 動作環境
 
 以下の環境で動作確認しています。
@@ -61,6 +97,12 @@ npm run build
 ~~~
 Liella と 蓮ノ空のメンバー3人でお題を作ってください
 ~~~
+
+## データのカスタマイズ
+
+構成ファイル(json)の引数で渡しているデータファイル `data.json` を編集して内容のカスタマイズが可能です。
+「サニパ様がいないのはけしからん」「Saint Snowどこ」等のご不満がある方は編集してみてください。
+(`src/index.ts` の説明文に手を加える必要があるかもしれません)
 
 ## 補足
 
