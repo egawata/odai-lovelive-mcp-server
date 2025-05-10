@@ -18,7 +18,7 @@ Claude Desktop 等の MCP Client を使って、お題を作成することが�
 
 以下の環境で動作確認しています。
 
-- macOS Sequoia 15.4
+- macOS Sequoia 15.4 (Windows, Linux 等でも多分動きます)
 - node v22.11.0
 - Claude for Mac 0.9.3
 
