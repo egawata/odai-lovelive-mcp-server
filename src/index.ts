@@ -4,13 +4,25 @@ import { z } from "zod";
 import fs from "fs"
 import path from "path"
 
+type Series = {
+    id: number;
+    name: string;
+    link: string;
+}
+
+type Character = {
+    name: string;
+    link: string;
+    series: number;
+}
+
 /*
     Database は、json ファイルを読み込んで、その内容を返すクラス。
 */
 class Database {
     private data: {
         series: Array<{ id: string, name: string }>,
-        characters: Array<{ id: string, name: string, series: string, [key: string]: any }>
+        characters: Array<Character>
     };
 
     constructor(dataPath: string) {
@@ -37,24 +49,63 @@ class Database {
             return this.data.characters;
         }
 
+        // seriesIDs を数値に変換
+        const seriesIDsNum = seriesIDs.map(id => parseInt(id, 10));
+
         return this.data.characters.filter(character =>
-            seriesIDs.includes(character.series)
+            seriesIDsNum.includes(character.series)
         );
     }
 }
 
 async function generateOdai(num: number, seriesIDs?: string[]) {
+    var chars = database?.getCharacters(seriesIDs);
+    if (!chars) {
+        return {
+            content: [
+                {
+                    type: "text" as const,
+                    text: `failed to get characters.`,
+                },
+            ],
+        }
+    }
+
+    const selectedChars = [];
+    const charsLength = chars.length;
+    if (num > charsLength) {
+        num = charsLength;
+    }
+    // chars をシャッフル
+    for (let i = charsLength - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [chars[i], chars[j]] = [chars[j], chars[i]];
+    }
+    // num 個のキャラクターを選択
+    for (let i = 0; i < num; i++) {
+        selectedChars.push(chars[i]);
+    }
+
+    const resp = {
+        "characters": selectedChars.map((char) => {
+            return {
+                "name": char.name,
+                "link": char.link,
+            }
+        }),
+    }
+
     return {
         content: [
             {
                 type: "text" as const,
-                text: `テスト`,
+                text: JSON.stringify(resp),
             },
         ],
     }
 }
 
-const server = new McpServer({
+const svr = new McpServer({
     name: "odai-lovelive",
     version: "0.0.1",
     capabilities: {
@@ -65,14 +116,14 @@ const server = new McpServer({
 
 var database: Database | undefined
 
-server.tool(
+svr.tool(
     "get-odai",
     "generate drawing themes(odai) for creating illustrations inspired by Love Live!",
     {
         num: z.number().min(1).max(10).describe("Number of characters. Default is 1"),
         seriesIDs: z.array(z.enum(["1", "2", "3", "4", "5"]))
             .optional()
-            .describe("series ID. Default is all series. 1: μ’ｓ, 2: Aqours, 3: 虹ヶ咲, 4: "),
+            .describe("series ID. Default is all series. 1: μ’ｓ, 2: Aqours, 3: 虹ヶ咲, 4: Liella!, 5: 蓮ノ空"),
     },
     async ({ num = 1, seriesIDs }, extra) => {
         const odai = await generateOdai(num, seriesIDs);
@@ -100,7 +151,7 @@ async function main() {
     await initDatabase();
 
     const transport = new StdioServerTransport();
-    await server.connect(transport);
+    await svr.connect(transport);
     console.error("Server started");
 }
 
