@@ -63,6 +63,8 @@ const server = new McpServer({
     },
 });
 
+var database: Database | undefined
+
 server.tool(
     "get-odai",
     "generate drawing themes(odai) for creating illustrations inspired by Love Live!",
@@ -78,7 +80,25 @@ server.tool(
     },
 )
 
+async function initDatabase() {
+    const dataPath = process.argv[2];
+    if (!dataPath) {
+        console.error("json file path is required.");
+        process.exit(1);
+    }
+
+    const absolutePath = path.resolve(dataPath);
+    if (!fs.existsSync(absolutePath)) {
+        console.error(`Data path does not exist: ${absolutePath}`);
+        process.exit(1);
+    }
+
+    database = new Database(absolutePath);
+}
+
 async function main() {
+    await initDatabase();
+
     const transport = new StdioServerTransport();
     await server.connect(transport);
     console.error("Server started");
