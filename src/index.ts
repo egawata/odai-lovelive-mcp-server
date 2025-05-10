@@ -22,7 +22,8 @@ type Character = {
 class Database {
     private data: {
         series: Array<{ id: string, name: string }>,
-        characters: Array<Character>
+        characters: Array<Character>,
+        places: Array<string>,
     };
 
     constructor(dataPath: string) {
@@ -32,7 +33,7 @@ class Database {
         } catch (error) {
             console.error('Failed to load data.json:', error);
             // 初期化エラー時は空のデータ構造を用意
-            this.data = { series: [], characters: [] };
+            this.data = { series: [], characters: [], places: [] };
         }
     }
 
@@ -56,6 +57,19 @@ class Database {
             seriesIDsNum.includes(character.series)
         );
     }
+
+    getPlaces() {
+        return this.data.places;
+    }
+}
+
+function getRandomPlace(): string {
+    const places = database?.getPlaces();
+    if (!places) {
+        return "failed to get places.";
+    }
+    const randomIndex = Math.floor(Math.random() * places.length);
+    return places[randomIndex];
 }
 
 async function generateOdai(num: number, seriesIDs?: string[]) {
@@ -93,6 +107,7 @@ async function generateOdai(num: number, seriesIDs?: string[]) {
                 "link": char.link,
             }
         }),
+        "place": getRandomPlace(),
     }
 
     return {
