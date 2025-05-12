@@ -24,6 +24,11 @@
       "name": "蓮ノ空",
       "link": "https://www.lovelive-anime.jp/hasunosora/",
       "id": 5
+    },
+    {
+        "name": "イキヅライブ",
+        "link": "https://www.lovelive-anime.jp/lovehigh/",
+        "id": 6
     }
   ],
   "characters": [
@@ -291,6 +296,56 @@
       "name": "高咲侑",
       "link": "https://lovelive-sif2.bushimo.jp/member/nijigasaki/yu/",
       "series": 3
+    },
+    {
+        "name": "高橋ポルカ",
+        "link": "https://www.lovelive-anime.jp/lovehigh/member/?m=0",
+        "series": 6
+    },
+    {
+        "name": "麻布麻衣",
+        "link": "https://www.lovelive-anime.jp/lovehigh/member/?m=1",
+        "series": 6
+    },
+    {
+        "name": "五桐玲",
+        "link": "https://www.lovelive-anime.jp/lovehigh/member/?m=2",
+        "series": 6
+    },
+    {
+        "name": "駒形花火",
+        "link": "https://www.lovelive-anime.jp/lovehigh/member/?m=3",
+        "series": 6
+    },
+    {
+        "name": "金澤奇跡",
+        "link": "https://www.lovelive-anime.jp/lovehigh/member/?m=4",
+        "series": 6
+    },
+    {
+        "name": "調布のりこ",
+        "link": "https://www.lovelive-anime.jp/lovehigh/member/?m=5",
+        "series": 6
+    },
+    {
+        "name": "春宮ゆくり",
+        "link": "https://www.lovelive-anime.jp/lovehigh/member/?m=6",
+        "series": 6
+    },
+    {
+        "name": "此花輝夜",
+        "link": "https://www.lovelive-anime.jp/lovehigh/member/?m=7",
+        "series": 6
+    },
+    {
+        "name": "山田真緑",
+        "link": "https://www.lovelive-anime.jp/lovehigh/member/?m=8",
+        "series": 6
+    },
+    {
+        "name": "佐々木翔音",
+        "link": "https://www.lovelive-anime.jp/lovehigh/member/?m=9",
+        "series": 6
     }
   ],
   "places": [

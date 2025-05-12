@@ -188,9 +188,9 @@ svr.tool(
     "generate drawing themes(odai) for creating illustrations inspired by Love Live!",
     {
         num: z.number().min(1).max(10).describe("Number of characters. Default is 1"),
-        seriesIDs: z.array(z.enum(["1", "2", "3", "4", "5"]))
+        seriesIDs: z.array(z.enum(["1", "2", "3", "4", "5", "6"]))
             .optional()
-            .describe("series ID. Default is all series. 1: μ’ｓ, 2: Aqours, 3: 虹ヶ咲, 4: Liella!, 5: 蓮ノ空"),
+            .describe("series ID. Default is all series. 1: μ’ｓ, 2: Aqours, 3: 虹ヶ咲, 4: Liella!, 5: 蓮ノ空, 6: イキヅライブ"),
     },
     async ({ num = 1, seriesIDs }, extra) => {
         const odai = await generateOdai(num, seriesIDs);
