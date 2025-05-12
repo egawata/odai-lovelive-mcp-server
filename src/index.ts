@@ -4,12 +4,6 @@ import { z } from "zod";
 import fs from "fs"
 import path from "path"
 
-type Series = {
-    id: number;
-    name: string;
-    link: string;
-}
-
 type Character = {
     name: string;
     link: string;
@@ -85,7 +79,7 @@ class Database {
     }
 }
 
-function getRandomPlace(): string {
+function pickPlace(): string {
     const places = database?.getPlaces();
     if (!places) {
         return "";
@@ -94,7 +88,7 @@ function getRandomPlace(): string {
     return places[randomIndex];
 }
 
-function getTime(): string {
+function pickTime(): string {
     const times = database?.getTimes();
     if (!times) {
         return "";
@@ -103,7 +97,7 @@ function getTime(): string {
     return times[randomIndex];
 }
 
-function getAction(): string {
+function pickAction(): string {
     const actions = database?.getActions();
     if (!actions) {
         return "";
@@ -112,7 +106,7 @@ function getAction(): string {
     return actions[randomIndex];
 }
 
-function getItem(): string {
+function pickItem(): string {
     const items = database?.getItems();
     if (!items) {
         return "";
@@ -156,10 +150,10 @@ async function generateOdai(num: number, seriesIDs?: string[]) {
                 "link": char.link,
             }
         }),
-        "place": getRandomPlace(),
-        "time": getTime(),
-        "action": getAction(),
-        "item": getItem(),
+        "place": pickPlace(),
+        "time": pickTime(),
+        "action": pickAction(),
+        "item": pickItem(),
     }
 
     return {
