@@ -1,5 +1,6 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { ResourceTemplate } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 import fs from "fs"
 import path from "path"
@@ -56,6 +57,8 @@ class Database {
 
         // seriesIDs を数値に変換
         const seriesIDsNum = seriesIDs.map(id => parseInt(id, 10));
+        console.error('Debug - seriesIDs:', seriesIDs);
+        console.error('Debug - seriesIDsNum:', seriesIDsNum);
 
         return this.data.characters.filter(character =>
             seriesIDsNum.includes(character.series)
@@ -170,12 +173,97 @@ const svr = new McpServer({
     name: "odai-lovelive",
     version: "0.0.1",
     capabilities: {
-        resources: {},
+        resources: {
+            subscribe: true,
+            listChanged: true,
+        },
         tools: {},
     },
 });
 
 var database: Database | undefined
+
+// リソース機能の実装
+svr.resource(
+    "series-list",
+    "lovelive://series",
+    {
+        description: "List of all Love Live! series with their IDs and names",
+        mimeType: "application/json"
+    },
+    async () => {
+        const series = database?.getSeries() || [];
+        return {
+            contents: [{
+                uri: "lovelive://series",
+                text: JSON.stringify(series, null, 2)
+            }]
+        };
+    }
+);
+
+svr.resource(
+    "all-characters",
+    "lovelive://characters",
+    {
+        description: "List of all Love Live! characters across all series",
+        mimeType: "application/json"
+    },
+    async () => {
+        const characters = database?.getCharacters() || [];
+        return {
+            contents: [{
+                uri: "lovelive://characters",
+                text: JSON.stringify(characters, null, 2)
+            }]
+        };
+    }
+);
+
+svr.resource(
+    "series-characters",
+    new ResourceTemplate("lovelive://series/{seriesId}/characters", { list: undefined }),
+    {
+        description: "Characters from a specific Love Live! series",
+        mimeType: "application/json"
+    },
+    async (uri, { seriesId }) => {
+        const seriesIdStr = Array.isArray(seriesId) ? seriesId[0] : seriesId;
+        const characters = database?.getCharacters([seriesIdStr]) || [];
+        return {
+            contents: [{
+                uri: uri.href,
+                text: JSON.stringify({
+                    seriesId: seriesIdStr,
+                    characters
+                }, null, 2)
+            }]
+        };
+    }
+);
+
+svr.resource(
+    "theme-elements",
+    "lovelive://theme-elements",
+    {
+        description: "Available places, times, actions, and items for odai generation",
+        mimeType: "application/json"
+    },
+    async () => {
+        const elements = {
+            places: database?.getPlaces() || [],
+            times: database?.getTimes() || [],
+            actions: database?.getActions() || [],
+            items: database?.getItems() || []
+        };
+        return {
+            contents: [{
+                uri: "lovelive://theme-elements",
+                text: JSON.stringify(elements, null, 2)
+            }]
+        };
+    }
+);
 
 svr.tool(
     "get-odai",
