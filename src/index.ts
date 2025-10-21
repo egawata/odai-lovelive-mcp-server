@@ -1,9 +1,12 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { SSEServerTransport } from "@modelcontextprotocol/sdk/server/sse.js";
 import { ResourceTemplate } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 import fs from "fs"
 import path from "path"
+import express from "express";
+import rateLimit from "express-rate-limit";
 
 type Character = {
     name: string;
@@ -296,12 +299,115 @@ async function initDatabase() {
     database = new Database(absolutePath);
 }
 
+async function startStdioMode() {
+    const transport = new StdioServerTransport();
+    await svr.connect(transport);
+    console.error("MCP Server started in stdio mode");
+}
+
+async function startHttpMode() {
+    const app = express();
+    const PORT = process.env.PORT || 3000;
+    const HOST = process.env.HOST || 'localhost';
+
+    app.use(express.json());
+
+    // レート制限の設定
+    const limiter = rateLimit({
+        windowMs: parseInt(process.env.RATE_LIMIT_WINDOW_MS || '60000'), // デフォルト: 1分
+        max: parseInt(process.env.RATE_LIMIT_MAX_REQUESTS || '100'), // デフォルト: 100リクエスト/分
+        message: 'Too many requests from this IP, please try again later.',
+        standardHeaders: true,
+        legacyHeaders: false,
+    });
+
+    app.use(limiter);
+
+    // セッションごとの SSE トランスポートを管理
+    const transports = new Map<string, SSEServerTransport>();
+
+    // ヘルスチェック用エンドポイント
+    app.get('/health', (req, res) => {
+        res.json({ status: 'ok', mode: 'http' });
+    });
+
+    // SSE エンドポイント (GET: SSE ストリームの確立)
+    app.get('/sse', async (req, res) => {
+        console.error('New SSE connection from:', req.ip);
+
+        try {
+            const transport = new SSEServerTransport('/sse', res);
+
+            transports.set(transport.sessionId, transport);
+            console.error(`Session started: ${transport.sessionId}`);
+
+            transport.onclose = () => {
+                console.error(`Session closed: ${transport.sessionId}`);
+                transports.delete(transport.sessionId);
+            };
+
+            transport.onerror = (error) => {
+                console.error(`Session error: ${transport.sessionId}`, error);
+                transports.delete(transport.sessionId);
+            };
+
+            await svr.connect(transport);
+        } catch (error) {
+            console.error('Error establishing SSE connection:', error);
+            if (!res.headersSent) {
+                res.status(500).json({ error: 'Failed to establish SSE connection' });
+            }
+        }
+    });
+
+    // SSE メッセージ受信エンドポイント (POST: クライアントからのメッセージ)
+    app.post('/sse', async (req, res) => {
+        const sessionId = req.query.sessionId as string || req.headers['x-mcp-session-id'] as string;
+
+        console.error(`Received POST message for session: ${sessionId}`);
+
+        if (!sessionId) {
+            console.error('No session ID provided');
+            res.status(400).json({ error: 'Session ID required' });
+            return;
+        }
+
+        const transport = transports.get(sessionId);
+
+        if (!transport) {
+            console.error(`Unknown session: ${sessionId}`);
+            res.status(404).json({ error: 'Session not found' });
+            return;
+        }
+
+        try {
+            await transport.handlePostMessage(req, res, req.body);
+        } catch (error) {
+            console.error(`Error handling POST message for session ${sessionId}:`, error);
+            if (!res.headersSent) {
+                res.status(500).json({ error: 'Failed to process message' });
+            }
+        }
+    });
+
+    app.listen(PORT as number, HOST, () => {
+        console.error(`MCP Server started in HTTP mode`);
+        console.error(`Listening on http://${HOST}:${PORT}`);
+        console.error(`SSE endpoint: http://${HOST}:${PORT}/sse`);
+        console.error(`Rate limit: ${process.env.RATE_LIMIT_MAX_REQUESTS || 100} requests per ${process.env.RATE_LIMIT_WINDOW_MS || 60000}ms`);
+    });
+}
+
 async function main() {
     await initDatabase();
 
-    const transport = new StdioServerTransport();
-    await svr.connect(transport);
-    console.error("Server started");
+    const mode = process.env.MCP_MODE || 'stdio';
+
+    if (mode === 'http') {
+        await startHttpMode();
+    } else {
+        await startStdioMode();
+    }
 }
 
 main().catch((error) => {
